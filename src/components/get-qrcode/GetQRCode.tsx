@@ -1,3 +1,4 @@
+/*
 "use client";
 import React from "react";
 
@@ -25,3 +26,4 @@ export default function JsonResultPopup({ data, onClose }: JsonResultPopupProps)
         </div>
     );
 }
+*/

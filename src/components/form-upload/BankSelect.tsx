@@ -1,7 +1,14 @@
-"use client";
 import React from "react";
+import {Bank} from "@/config/site";
 
-export function BankSelect({ acqId, setAcqId, banks, selectedOption }: any) {
+interface BankSelectProps {
+    acqId: string;
+    setAcqId: (id: string) => void;
+    banks: Bank[];
+    selectedOption: string;
+}
+
+export function BankSelect({acqId, setAcqId, banks, selectedOption}: BankSelectProps) {
     return (
         <select
             value={acqId}
@@ -10,7 +17,7 @@ export function BankSelect({ acqId, setAcqId, banks, selectedOption }: any) {
             className="border p-2 w-full"
         >
             <option value="">Chọn ngân hàng</option>
-            {banks.map((b: any) => (
+            {banks.map((b: Bank) => (
                 <option key={b.code} value={b.code}>
                     {b.name}
                 </option>

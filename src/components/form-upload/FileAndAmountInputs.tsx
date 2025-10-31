@@ -1,7 +1,13 @@
-"use client";
 import React from "react";
 
-export function FileAndAmountInputs({ setImage, parsedAmount, amount, setAmount }: any) {
+interface FileAndAmountInputsProps {
+    setImage: (image: File | null) => void;
+    parsedAmount?: number;
+    amount: number;
+    setAmount: (amount: number) => void;
+}
+
+export function FileAndAmountInputs({ setImage, parsedAmount, amount, setAmount }: FileAndAmountInputsProps) {
     return (
         <>
             <input
@@ -14,7 +20,7 @@ export function FileAndAmountInputs({ setImage, parsedAmount, amount, setAmount 
                 type="number"
                 placeholder="Nhập số tiền"
                 value={parsedAmount || amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(e.target.value ? Number(e.target.value) : 0)}
                 className="border p-2 w-full"
                 disabled={!!parsedAmount}
             />
