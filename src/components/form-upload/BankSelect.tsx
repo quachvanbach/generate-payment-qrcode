@@ -1,9 +1,9 @@
 import React from "react";
 import {Bank} from "@/config/site";
 
-interface BankSelectProps {
+type BankSelectProps = {
     acqId: string;
-    setAcqId: (id: string) => void;
+    setAcqId: (acqId: string) => void;
     banks: Bank[];
     selectedOption: string;
 }

@@ -2,6 +2,7 @@ import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
     const body = await req.json();
+    console.log("body", body)
     const YOUR_CLIENT_ID = process.env.VIETQR_CLIENT_ID;
     const VIETQR_API_KEY = process.env.VIETQR_API_KEY;
 

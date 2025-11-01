@@ -1,3 +1,4 @@
+/*
 'use client';
 import { useEffect, useState } from 'react';
 import Tesseract from 'tesseract.js';
@@ -110,7 +111,7 @@ export default function OCRtoQR() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-[80px]">
             <div className="left-block">
                 <h1 className="title">Hình ảnh đơn hàng:</h1>
-                <input type="file" accept="image/*" onChange={handleImageUpload} />
+                <input type="file" accept="image/!*" onChange={handleImageUpload} />
                 {imageUrl && (
                     <div className="w-full max-w-[500px] mx-auto">
                         <p className="mt-4 text-sm text-gray-600">Ảnh đã chọn:</p>
@@ -159,3 +160,4 @@ export default function OCRtoQR() {
         </div>
     );
 }
+*/

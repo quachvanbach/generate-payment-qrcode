@@ -4,8 +4,9 @@ import { BankSelect } from "./BankSelect";
 import { AccountInputs } from "./AccountInputs";
 import { FileAndAmountInputs } from "./FileAndAmountInputs";
 import { SubmitButton } from "./SubmitButton";
+import {JsonDataProps} from "@/app/types/common";
 
-type Props = { onJsonReady: (data: object, qrImage?: string, autoShow?: boolean) => void };
+type Props = { onJsonReady: (data: JsonDataProps, qrImage?: string, autoShow?: boolean) => void };
 
 export default function FormUpload({ onJsonReady }: Props) {
     const form = useFormLogic(onJsonReady);

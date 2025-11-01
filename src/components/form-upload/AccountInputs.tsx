@@ -1,11 +1,11 @@
 import React from "react";
 
-type AccountInputProps = {
-    accountNo: string,
-    setAccountNo: React.Dispatch<React.SetStateAction<string>>,
-    accountName: string,
-    setAccountName: React.Dispatch<React.SetStateAction<string>>,
-    selectedOption: string,
+type AccountInputsProps = {
+    accountNo: string;
+    setAccountNo: (accountNo: string) => void;
+    accountName: string;
+    setAccountName: (accountName: string) => void;
+    selectedOption: string;
 }
 
 export function AccountInputs({
@@ -14,7 +14,7 @@ export function AccountInputs({
                                   accountName,
                                   setAccountName,
                                   selectedOption,
-                              }: AccountInputProps) {
+                              }: AccountInputsProps) {
     const disabled = selectedOption !== "Khác" && selectedOption !== "";
 
     return (

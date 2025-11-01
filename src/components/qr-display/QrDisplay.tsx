@@ -1,9 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, {useState} from "react";
+import Image from "next/image";
+import {IoMdClose} from "react-icons/io";
+import {JsonDataProps} from "@/app/types/common";
 
-type Props = { jsonData: any; qrImage?: string | null; autoShow?: boolean };
+type Props = { jsonData: JsonDataProps; qrImage: string | null; autoShow?: boolean };
 
-export default function QrDisplay({ jsonData, qrImage, autoShow }: Props) {
+export default function QrDisplay({jsonData, qrImage, autoShow}: Props) {
     const [qrSrc, setQrSrc] = useState<string | null>(qrImage || null);
     const [showPopup, setShowPopup] = useState(autoShow || false);
     const [loading, setLoading] = useState(false);
@@ -12,7 +15,7 @@ export default function QrDisplay({ jsonData, qrImage, autoShow }: Props) {
         setLoading(true);
         const qrRes = await fetch("/api/vietqr", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(jsonData),
         });
 
@@ -39,18 +42,18 @@ export default function QrDisplay({ jsonData, qrImage, autoShow }: Props) {
                     <div className="bg-white p-4 rounded-lg shadow-lg relative">
                         <button
                             onClick={() => setShowPopup(false)}
-                            className="absolute top-2 right-2 text-gray-500"
+                            className="absolute text-2xl top-2 right-2 text-gray-500"
                         >
-                            ×
+                            <IoMdClose/>
                         </button>
 
-                        <h2 className="text-lg font-bold mb-2">Dữ liệu JSON</h2>
+                        {/*<h2 className="text-lg font-bold mb-2">Dữ liệu JSON</h2>
                         <pre className="bg-gray-100 p-2 rounded mb-3 text-sm overflow-auto">
               {JSON.stringify(jsonData, null, 2)}
-            </pre>
+            </pre>*/}
 
                         {qrSrc ? (
-                            <img src={qrSrc} alt="QR Code" className="w-48 mx-auto" />
+                            <Image width={100} height={100} src={qrSrc} alt="QR Code" className="w-full mx-auto"/>
                         ) : (
                             <p className="text-gray-500 text-center">QR chưa được tạo.</p>
                         )}

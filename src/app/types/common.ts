@@ -1,22 +1,33 @@
-export interface VietQRRequest {
-    accountNo: string;
+export interface JsonDataProps {
     accountName: string;
+    accountNo: string;
     acqId: string;
-    amount?: string;
-    addInfo?: string;
+    addInfo: string;
+    amount: string;
+}
+
+export interface FileAndAmountInputsProps {
+    setImage: (file: File | null) => void;
+    parsedAmount: string;
+    amount: string|number;
+    setAmount: (value: string) => void;
 }
 
 export interface VietQRResponse {
-    data?: {
-        qrDataURL?: string;
+    "code": string;
+    "desc": string;
+    "data": {
+        "qrCode": string
+        "qrDataURL": string;
     };
-    error?: string;
 }
 
-export interface JsonResult {
-    amount?: string;
-    addInfo?: string;
-    accountNo: string;
-    accountName: string;
-    acqId: string;
+export interface VietQrDataSent {
+    accountName:string;
+    accountNo:string;
+    acqId:string;
+    addInfo:string;
+    amount:string;
+    format:string;
+    template:string;
 }

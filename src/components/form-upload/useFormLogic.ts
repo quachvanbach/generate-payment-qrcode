@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
-import { banks } from "@/config/site";
+import {useState} from "react";
+import {banks} from "@/config/site";
+import {JsonDataProps} from "@/app/types/common";
 
 export const useFormLogic = (
-    onJsonReady: (data: any, qrImage?: string, autoShow?: boolean) => void
+    onJsonReady: (data: JsonDataProps, qrImage?: string, autoShow?: boolean) => void
 ) => {
     const [image, setImage] = useState<File | null>(null);
     const [accountNo, setAccountNo] = useState("");
@@ -11,15 +12,15 @@ export const useFormLogic = (
     const [acqId, setAcqId] = useState("");
     const [selectedOption, setSelectedOption] = useState("");
     const [amount, setAmount] = useState("");
-    const [parsedAmount, setParsedAmount] = useState<string | null>(null);
+    const [parsedAmount, setParsedAmount] = useState<string>("");
     const [loading, setLoading] = useState(false);
 
     const handleSelectChange = (value: string) => {
         setSelectedOption(value);
         const presets: Record<string, { accountNo: string; accountName: string; acqId: string }> = {
-            SPX: { accountNo: "1234567890", accountName: "Trịnh Tuấn Anh", acqId: "970436" },
-            "J&T": { accountNo: "9876543210", accountName: "Trần Văn B", acqId: "970415" },
-            GHN: { accountNo: "5555555555", accountName: "Lê Thị C", acqId: "970418" },
+            SPX: {accountNo: "1234567890", accountName: "Trịnh Tuấn Anh", acqId: "9704361"},
+            "J&T": {accountNo: "9876543210", accountName: "Trần Văn B", acqId: "970415"},
+            GHN: {accountNo: "5555555555", accountName: "Lê Thị C", acqId: "970418"},
         };
 
         const preset = presets[value];
@@ -39,7 +40,7 @@ export const useFormLogic = (
         if (!accountNo || !accountName || !acqId) return alert("Vui lòng nhập đầy đủ thông tin tài khoản!");
         setLoading(true);
 
-        let jsonData: any = {};
+        let jsonData: JsonDataProps;
         if (image) {
             const formData = new FormData();
             formData.append("image", image);
@@ -47,11 +48,12 @@ export const useFormLogic = (
             formData.append("accountName", accountName);
             formData.append("acqId", acqId);
 
-            const res = await fetch("/api/generate-json", { method: "POST", body: formData });
+            const res = await fetch("/api/generate-json", {method: "POST", body: formData});
             jsonData = await res.json();
+            console.log("jsonData", jsonData);
             if (!res.ok) {
                 setLoading(false);
-                return alert("AI thất bại trong việc đọc ảnh: " + jsonData.error);
+                return alert("AI thất bại trong việc đọc ảnh");
             }
 
             if (!jsonData.amount) jsonData.amount = amount || "";
@@ -62,19 +64,23 @@ export const useFormLogic = (
                 setLoading(false);
                 return alert("Vui lòng nhập số tiền vì bạn không tải ảnh lên!");
             }
-            jsonData = { accountNo, accountName, acqId, amount, addInfo: "chuyen tien" };
+
+            jsonData = {accountNo, accountName, acqId, amount, addInfo: "chuyen tien"};
+            console.log(jsonData);
         }
 
         const qrRes = await fetch("/api/vietqr", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(jsonData),
         });
-
+        console.log("qrRes", qrRes);
         const qrData = await qrRes.json();
+
+        console.log("qrData:", qrData);
         if (!qrRes.ok || !qrData?.data?.qrDataURL) {
             setLoading(false);
-            return alert("Lỗi khi tạo mã QR.");
+            return alert(qrData?.desc || "Lỗi khi tạo mã QR.");
         }
 
         onJsonReady(jsonData, qrData.data.qrDataURL, true);
