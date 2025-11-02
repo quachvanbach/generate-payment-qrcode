@@ -20,6 +20,7 @@ export default function FormUpload({ onJsonReady }: Props) {
                 <option value="" disabled>
                     Tên người nhận
                 </option>
+                <option value="QVB">Quách Văn Bách</option>
                 <option value="SPX">SPX</option>
                 <option value="J&T">J&T</option>
                 <option value="GHN">GHN</option>

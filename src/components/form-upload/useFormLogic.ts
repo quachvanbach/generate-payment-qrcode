@@ -18,6 +18,7 @@ export const useFormLogic = (
     const handleSelectChange = (value: string) => {
         setSelectedOption(value);
         const presets: Record<string, { accountNo: string; accountName: string; acqId: string }> = {
+            QVB:{accountNo:"622868686688",accountName: "Quách Văn Bách", acqId:"970422"},
             SPX: {accountNo: "0341007172853", accountName: "Trịnh Tuấn Anh", acqId: "970436"},
             "J&T": {accountNo: "9876543210", accountName: "Trần Văn B", acqId: "970415"},
             GHN: {accountNo: "5555555555", accountName: "Lê Thị C", acqId: "970418"},
