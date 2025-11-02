@@ -48,7 +48,7 @@ export const useFormLogic = (
             formData.append("accountName", accountName);
             formData.append("acqId", acqId);
 
-            const res = await fetch(`${process.env.BASE_URL}/api/generate-json`, {method: "POST", body: formData});
+            const res = await fetch(`/api/generate-json`, {method: "POST", body: formData});
             jsonData = await res.json();
             if (!res.ok) {
                 setLoading(false);
@@ -75,7 +75,7 @@ export const useFormLogic = (
             };
         }
 
-        const qrRes = await fetch(`${process.env.BASE_URL}/api/vietqr`, {
+        const qrRes = await fetch(`/api/vietqr`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(jsonData),
