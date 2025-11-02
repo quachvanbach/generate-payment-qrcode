@@ -1,5 +1,5 @@
 import React from "react";
-import {FileAndAmountInputsProps} from "@/app/types/common";
+import {FileAndAmountInputsProps} from "@/types/common";
 
 export function FileAndAmountInputs({image, setImage, parsedAmount, amount, setAmount}: FileAndAmountInputsProps) {
     return (

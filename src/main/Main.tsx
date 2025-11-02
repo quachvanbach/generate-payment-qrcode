@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import FormUpload from "@/components/form-upload/FormUpload";
 import QrDisplay from "@/components/qr-display/QrDisplay";
-import {JsonDataProps} from "@/app/types/common";
+import {JsonDataProps} from "@/types/common";
 
 export default function MainComponent() {
     const [jsonData, setJsonData] = useState<JsonDataProps | null>(null);

@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import Image from "next/image";
 import {IoMdClose} from "react-icons/io";
-import {JsonDataProps} from "@/app/types/common";
+import {JsonDataProps} from "@/types/common";
 
 type Props = { jsonData: JsonDataProps; qrImage: string | null; autoShow?: boolean };
 

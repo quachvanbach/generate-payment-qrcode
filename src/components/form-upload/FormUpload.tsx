@@ -4,7 +4,7 @@ import { BankSelect } from "./BankSelect";
 import { AccountInputs } from "./AccountInputs";
 import { FileAndAmountInputs } from "./FileAndAmountInputs";
 import { SubmitButton } from "./SubmitButton";
-import {JsonDataProps} from "@/app/types/common";
+import {JsonDataProps} from "@/types/common";
 
 type Props = { onJsonReady: (data: JsonDataProps, qrImage?: string, autoShow?: boolean) => void };
 

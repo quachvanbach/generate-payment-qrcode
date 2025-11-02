@@ -1,7 +1,7 @@
 "use client";
 import {useState} from "react";
 import {banks} from "@/config/site";
-import {JsonDataProps, VietQrDataSent} from "@/app/types/common";
+import {JsonDataProps, VietQrDataSent} from "@/types/common";
 
 export const useFormLogic = (
     onJsonReady: (data: JsonDataProps, qrImage?: string, autoShow?: boolean) => void
