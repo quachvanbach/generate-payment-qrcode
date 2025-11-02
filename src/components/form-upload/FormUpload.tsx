@@ -10,7 +10,6 @@ type Props = { onJsonReady: (data: JsonDataProps, qrImage?: string, autoShow?: b
 
 export default function FormUpload({ onJsonReady }: Props) {
     const form = useFormLogic(onJsonReady);
-
     return (
         <form onSubmit={form.handleSubmit} className="space-y-3 border p-4 rounded">
             <select

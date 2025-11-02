@@ -10,6 +10,12 @@ const nextConfig = {
       },
     ],
   },
+  routes: [
+    {
+      "src": "/api/vietqr",
+      "dest": "/api/generate-json"
+    }
+  ]
 };
 
 export default nextConfig;

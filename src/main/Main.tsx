@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import FormUpload from "@/components/form-upload/FormUpload";
 import QrDisplay from "@/components/qr-display/QrDisplay";
 import {JsonDataProps} from "@/app/types/common";
@@ -14,9 +14,7 @@ export default function MainComponent() {
         setQrImage(qrImg || null);
         setAutoShow(!!auto);
     };
-    useEffect(() => {
-        console.log("Jsondata", jsonData)
-    }, []);
+
     return (
         <div className="max-w-md mx-auto mt-10">
             <h1 className="text-2xl font-bold mb-4 text-center">Tạo Mã QR Thanh Toán</h1>

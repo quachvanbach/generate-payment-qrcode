@@ -17,6 +17,7 @@ export interface VietQrDataSent {
 }
 
 export interface FileAndAmountInputsProps {
+    image: File|null;
     setImage: (file: File | null) => void;
     parsedAmount: string;
     amount: string|number;

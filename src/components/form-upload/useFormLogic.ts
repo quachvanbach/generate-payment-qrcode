@@ -48,14 +48,12 @@ export const useFormLogic = (
             formData.append("accountName", accountName);
             formData.append("acqId", acqId);
 
-            const res = await fetch("/api/generate-json", {method: "POST", body: formData});
+            const res = await fetch(`${process.env.BASE_URL}/api/generate-json`, {method: "POST", body: formData});
             jsonData = await res.json();
-            console.log("jsonData", jsonData);
             if (!res.ok) {
                 setLoading(false);
                 return alert("AI thất bại trong việc đọc ảnh");
             }
-
 
             if (!jsonData.amount) jsonData.amount = amount || "";
             else setParsedAmount(jsonData.amount);
@@ -75,26 +73,25 @@ export const useFormLogic = (
                 format: "text",
                 template: "compact"
             };
-            console.log(jsonData);
         }
 
-        const qrRes = await fetch("/api/vietqr", {
+        const qrRes = await fetch(`${process.env.BASE_URL}/api/vietqr`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(jsonData),
         });
-        console.log("qrRes", qrRes);
-        const qrData = await qrRes.json();
 
-        console.log("qrData:", qrData);
+        const qrData = await qrRes.json();
         if (!qrRes.ok || !qrData?.data?.qrDataURL) {
             setLoading(false);
             return alert(qrData?.desc || "Lỗi khi tạo mã QR.");
         }
 
+        // Truyền thêm autoShow: true vào callback
         onJsonReady(jsonData, qrData.data.qrDataURL, true);
         setLoading(false);
     };
+
 
     return {
         image,
