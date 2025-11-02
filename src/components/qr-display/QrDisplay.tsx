@@ -27,6 +27,8 @@ export default function QrDisplay({jsonData, qrImage, autoShow}: Props) {
         setLoading(false);
     };
 
+    console.log("loading:",loading)
+
     return (
         <div className="mt-4">
             <button

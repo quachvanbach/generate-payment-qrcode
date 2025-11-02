@@ -1,7 +1,7 @@
 "use client";
 import {useState} from "react";
 import {banks} from "@/config/site";
-import {JsonDataProps} from "@/app/types/common";
+import {JsonDataProps, VietQrDataSent} from "@/app/types/common";
 
 export const useFormLogic = (
     onJsonReady: (data: JsonDataProps, qrImage?: string, autoShow?: boolean) => void
@@ -40,7 +40,7 @@ export const useFormLogic = (
         if (!accountNo || !accountName || !acqId) return alert("Vui lòng nhập đầy đủ thông tin tài khoản!");
         setLoading(true);
 
-        let jsonData: JsonDataProps;
+        let jsonData: VietQrDataSent;
         if (image) {
             const formData = new FormData();
             formData.append("image", image);
@@ -56,6 +56,7 @@ export const useFormLogic = (
                 return alert("AI thất bại trong việc đọc ảnh");
             }
 
+
             if (!jsonData.amount) jsonData.amount = amount || "";
             else setParsedAmount(jsonData.amount);
             if (!jsonData.addInfo) jsonData.addInfo = "chuyen tien";
@@ -65,7 +66,15 @@ export const useFormLogic = (
                 return alert("Vui lòng nhập số tiền vì bạn không tải ảnh lên!");
             }
 
-            jsonData = {accountNo, accountName, acqId, amount, addInfo: "chuyen tien"};
+            jsonData = {
+                accountNo,
+                accountName,
+                acqId,
+                amount,
+                addInfo: "chuyen tien",
+                format: "text",
+                template: "compact"
+            };
             console.log(jsonData);
         }
 

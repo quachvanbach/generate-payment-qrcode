@@ -6,6 +6,16 @@ export interface JsonDataProps {
     amount: string;
 }
 
+export interface VietQrDataSent {
+    accountName:string;
+    accountNo:string;
+    acqId:string;
+    addInfo:string;
+    amount:string;
+    format: "text";
+    template: "compact";
+}
+
 export interface FileAndAmountInputsProps {
     setImage: (file: File | null) => void;
     parsedAmount: string;
@@ -20,14 +30,4 @@ export interface VietQRResponse {
         "qrCode": string
         "qrDataURL": string;
     };
-}
-
-export interface VietQrDataSent {
-    accountName:string;
-    accountNo:string;
-    acqId:string;
-    addInfo:string;
-    amount:string;
-    format:string;
-    template:string;
 }
