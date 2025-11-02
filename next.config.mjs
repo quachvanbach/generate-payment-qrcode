@@ -15,7 +15,10 @@ const nextConfig = {
       "src": "/api/vietqr",
       "dest": "/api/generate-json"
     }
-  ]
+  ],
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  },
 };
 
 export default nextConfig;
