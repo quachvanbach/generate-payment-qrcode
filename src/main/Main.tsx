@@ -2,13 +2,14 @@
 import React, {useEffect, useState} from "react";
 import FormUpload from "@/components/form-upload/FormUpload";
 import QrDisplay from "@/components/qr-display/QrDisplay";
+import {JsonDataProps} from "@/app/types/common";
 
 export default function MainComponent() {
-    const [jsonData, setJsonData] = useState<never | null>(null);
+    const [jsonData, setJsonData] = useState<JsonDataProps | null>(null);
     const [qrImage, setQrImage] = useState<string | null>(null);
     const [autoShow, setAutoShow] = useState(false);
 
-    const handleJsonReady = (data: any, qrImg?: string, auto?: boolean) => {
+    const handleJsonReady = (data: JsonDataProps, qrImg?: string, auto?: boolean) => {
         setJsonData(data);
         setQrImage(qrImg || null);
         setAutoShow(!!auto);

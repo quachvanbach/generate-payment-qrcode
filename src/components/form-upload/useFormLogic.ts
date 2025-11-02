@@ -18,7 +18,7 @@ export const useFormLogic = (
     const handleSelectChange = (value: string) => {
         setSelectedOption(value);
         const presets: Record<string, { accountNo: string; accountName: string; acqId: string }> = {
-            SPX: {accountNo: "1234567890", accountName: "Trịnh Tuấn Anh", acqId: "9704361"},
+            SPX: {accountNo: "0341007172853", accountName: "Trịnh Tuấn Anh", acqId: "970436"},
             "J&T": {accountNo: "9876543210", accountName: "Trần Văn B", acqId: "970415"},
             GHN: {accountNo: "5555555555", accountName: "Lê Thị C", acqId: "970418"},
         };
